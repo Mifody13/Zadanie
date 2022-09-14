@@ -5,44 +5,42 @@ public class Zad1 {
     public static int[] generateArr(int arrCol) {
         int[] arr = new int[arrCol];
         for (int i = 0; i < arrCol; i++) {
-            arr[i] = (int) (Math.random() * 100);
+            arr[i] = (int) (Math.random() * 10);
         }
         return arr;
 
     }
 
     public static void main(String[] args) {
-        int arrCol;
         System.out.println("Введите количество элементов массива");
         Scanner userinput = new Scanner(System.in);
-        arrCol = userinput.nextInt();
-        int[] arr = noDoble(arrCol);
-        System.out.println(Arrays.toString(arr));
+        int arrLength = userinput.nextInt();
+        int[] generateArr = generateArr(arrLength);
+        System.out.println("\n*** source array:");
+        System.out.println(Arrays.toString(generateArr));
+        System.out.println("\n*** result array:");
+        System.out.println(Arrays.toString(noDoble(generateArr)));
     }
 
-    public static int[] noDoble(int arrCol) {
-        int[] arr = generateArr(arrCol);
-        int[] arr2 = new int[arrCol];
+    public static int[] noDoble(int[] source) {
+        int[] arr2 = new int[source.length];
 
         int iArr = 0;
-        int cErr = 0;
-
-        System.out.println(Arrays.toString(arr));
-        for (int i = 0; i < arrCol; i++) {
+        int cErr;
+        for (int i = 0; i < source.length; i++) {
             cErr = 0;
-            for (int j = 0; j < arrCol; j++) {
-                if ((arr[i] == arr[j]) & (i != j)) {
+            for (int j = 0; j <  source.length; j++) {
+                if ((source[i] == source[j]) & (i != j)) {
                     cErr++;
                 }
             }
             if (cErr == 0) {
-                arr2[iArr] = arr[i];
+                arr2[iArr] = source[i];
                 iArr++;
 
             }
         }
-        int arr3[] = Arrays.copyOf(arr2, iArr);
-        return arr3;
+        return Arrays.copyOf(arr2, iArr);
     }
 
 }
